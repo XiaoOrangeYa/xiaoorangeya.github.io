@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+		<meta name="description" content="这是晓橙的Blog，懒得写简介了将就着看一下吧！">
+		<meta name="keywords" content="晓橙,xiaoorange,xiao orange,xiao_orange,Blog">
+		<title>咸鱼之家 | Xiaoorange's</title>
+		<link rel="stylesheet" type="text/css" href="./css/preload.css">
+		<link rel="stylesheet" type="text/css" href="./css/blog.css">
+		<link rel="stylesheet" type="text/css" href="./css/icon.css">
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		<style>
+			.tap_center{margin-top: 5vh;color: #FAFAFA;text-align: center;font-size: 1.8rem;}.blink{animation: typedjsBlink 1s infinite;-webkit-animation: typedjsBlink 1s infinite;animation: typedjsBlink 1s infinite;}@keyframes typedjsBlink{50%{opacity:0.0}}@-webkit-keyframes typedjsBlink{0%{opacity:1}50%{opacity:0.0}100%{opacity:1}}
+		</style>
+	</head>
+	<body>
+		<!-- 预加载 -->
+		<div id="preloader" class="preloader">
+			<img src="./img/preloader.png" height="64px" alt="">
+		</div>
+		<!-- 头部 -->
+		<header style="height: 30vh;background-image: url(./img/blog.jpg);padding-bottom: 96px;">
+			<div class="navber">
+				<a href="./blog.html"><b>Free Fish</b></a>
+				<div class="nav-link">
+					<a href="./index.html"><i class="icon-home"></i>首页</a>
+					<a href="./blog.html"><i class="icon-write"></i>Blog</a>
+					<a onclick="logout()" id="nav_user">使用Github登录</a>
+				</div>
+			</div>
+			<div class="tap_center">
+				<span id="blog_title">等等我马上好</span><span class="blink">_</span>
+			</div>
+		</header>
+		<!-- 主体部分 -->
+		<main>
+			<div class="box" style="margin-top: -128px;">
+				<div id="blog_body">
+					<h1>正在努力奔跑中...</h1>
+					<p>长时间看到我的话，建议你刷新后看看哦！</p>
+				</div>
+				<div id="talk" class="talk_box"></div>
+			</div>
+		</main>
+		<!-- 尾部 -->
+		<div class="footer">
+			&copy;2022 Copyright Xiao_orange All.right<br>本博客由晓橙完成构建，未经许可，不得私自搬运文章内容
+		</div>
+	</body>
+	<script src="./js/blog.js"></script>
+	<script>
+		// 原生js操作预加载
+		document.onreadystatechange = function(){
+			if(document.readyState == 'complete'){
+				document.getElementById("preloader").style.display="none";
+			}
+		}
+		getbody();
+		if($.cookie('gh_token')){
+			$('#nav_user').html($.cookie('gh_user')+' | 注销');
+		}
+		function logout(){
+			if($.cookie('gh_token')){
+				$.cookie('gh_token','');
+				$.cookie('gh_user','');
+				$.cookie('gh_avatar','');
+				window.location.reload();
+			}else{
+				window.location.href="https://github.com/login/oauth/authorize?client_id=eeec4d4683abde2a02e3"
+			}
+		}
+	</script>
+</html>
